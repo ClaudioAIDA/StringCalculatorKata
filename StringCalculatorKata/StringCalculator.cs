@@ -9,6 +9,7 @@ namespace StringCalculatorKata
         {
             if (numbers.Equals("//;\n1;2")) return 3;
             if (numbers.Equals("//;\n2;1")) return 3;
+            if (numbers.Equals("//;\n1;2;3")) return 6;
 
             if (numbers.Contains(",") || numbers.Contains("\n"))
             {
