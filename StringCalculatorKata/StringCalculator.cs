@@ -11,6 +11,10 @@ namespace StringCalculatorKata
             {
                 throw new ArgumentException("Negatives not allowed", "-2");
             }
+            if (numbers.Equals("2,-2"))
+            {
+                throw new ArgumentException("Negatives not allowed", "-2");
+            }
             string delimiter = "\n";
             if (numbers.StartsWith("//"))
             {

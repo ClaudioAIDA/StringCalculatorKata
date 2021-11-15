@@ -67,5 +67,13 @@ namespace StringCalculatorKata
             Assert.Throws<ArgumentException>(expectedParameter, () => StringCalculator.Add("-2"));
         }
 
+        [Fact]
+        public void ThrowsArgumentExceptionWhenStringIs2CommaMinus2()
+        {
+            string expectedParameter = "-2";
+
+            Assert.Throws<ArgumentException>(expectedParameter, () => StringCalculator.Add("2,-2"));
+        }
+
     }
 }
