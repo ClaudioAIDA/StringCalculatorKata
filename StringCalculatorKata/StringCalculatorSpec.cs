@@ -59,28 +59,13 @@ namespace StringCalculatorKata
             Assert.Equal(expectedValue, result);
         }
 
-        [Fact]
-        public void ThrowsArgumentExceptionWhenStringIsMinus2()
+        [Theory]
+        [InlineData("-2", "-2")]
+        [InlineData("-2", "2,-2")]
+        [InlineData("-2 -3", "2,-2,-3")]
+        public void ThrowsArgumentExceptionWhenStringContainsANegative(string expectedParameter, string numbers)
         {
-            string expectedParameter = "-2";
-
-            Assert.Throws<ArgumentException>(expectedParameter, () => StringCalculator.Add("-2"));
-        }
-
-        [Fact]
-        public void ThrowsArgumentExceptionWhenStringIs2CommaMinus2()
-        {
-            string expectedParameter = "-2";
-
-            Assert.Throws<ArgumentException>(expectedParameter, () => StringCalculator.Add("2,-2"));
-        }
-
-        [Fact]
-        public void ThrowsArgumentExceptionWhenStringIs2CommaMinus2CommaMinus3()
-        {
-            string expectedParameter = "-2 -3";
-
-            Assert.Throws<ArgumentException>(expectedParameter, () => StringCalculator.Add("2,-2,-3"));
+            Assert.Throws<ArgumentException>(expectedParameter, () => StringCalculator.Add(numbers));
         }
 
     }
