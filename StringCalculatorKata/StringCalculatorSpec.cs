@@ -1,3 +1,4 @@
+using System;
 using Xunit;
 
 namespace StringCalculatorKata
@@ -56,6 +57,14 @@ namespace StringCalculatorKata
             int result = StringCalculator.Add(numbers);
 
             Assert.Equal(expectedValue, result);
+        }
+
+        [Fact]
+        public void ThrowsArgumentExceptionWhenStringIsMinus2()
+        {
+            string expectedParameter = "-2";
+
+            Assert.Throws<ArgumentException>(expectedParameter, () => StringCalculator.Add("-2"));
         }
 
     }

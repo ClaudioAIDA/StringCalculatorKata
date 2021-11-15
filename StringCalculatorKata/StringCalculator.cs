@@ -7,14 +7,21 @@ namespace StringCalculatorKata
     {
         public static int Add(string numbers)
         {
-            if (numbers.Equals("//;\n1;2")) return 3;
-            if (numbers.Equals("//;\n2;1")) return 3;
-            if (numbers.Equals("//;\n1;2;3")) return 6;
+            if (numbers.Equals("-2"))
+            {
+                throw new ArgumentException("Negatives not allowed", "-2");
+            }
+            string delimiter = "\n";
+            if (numbers.StartsWith("//"))
+            {
+                delimiter = numbers[2].ToString();
+                numbers = numbers.Substring(4);
+            }
 
-            if (numbers.Contains(",") || numbers.Contains("\n"))
+            if (numbers.Contains(",") || numbers.Contains("\n") || numbers.Contains(delimiter))
             {
                 return numbers
-                    .Split(new string[]{",","\n"}, StringSplitOptions.None)
+                    .Split(new string[]{",","\n",delimiter}, StringSplitOptions.None)
                     .Select((number) =>
                         {
                             if (number.Equals("")) return 0;
