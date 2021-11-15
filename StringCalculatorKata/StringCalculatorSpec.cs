@@ -27,6 +27,16 @@ namespace StringCalculatorKata
 
             Assert.Equal(expectedValue, result);
         }
-        
+
+
+        [Fact]
+        public void Return3WhenStringIs1CLRF2()
+        {
+            int expectedValue = 3;
+            int result = StringCalculator.Add("1\n2");
+
+            Assert.Equal(expectedValue, result);
+        }
+
     }
 }

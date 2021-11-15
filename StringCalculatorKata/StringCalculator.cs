@@ -7,10 +7,10 @@ namespace StringCalculatorKata
     {
         public static int Add(string numbers)
         {
-            if (numbers.Contains(","))
+            if (numbers.Contains(",") || numbers.Contains("\n"))
             {
                 return numbers
-                    .Split(",")
+                    .Split(new string[]{",","\n"}, StringSplitOptions.None)
                     .Select((number) =>
                         {
                             if (number.Equals("")) return 0;
