@@ -20,6 +20,7 @@ namespace StringCalculatorKata
         [InlineData(3,"1,2")]
         [InlineData(3, "2,1")]
         [InlineData(5, "2,3")]
+        [InlineData(6,"1,2,3")]
         public void ReturnValueWhenStringContainsAComma(int expectedValue, string numbers)
         {
             int result = StringCalculator.Add(numbers);
