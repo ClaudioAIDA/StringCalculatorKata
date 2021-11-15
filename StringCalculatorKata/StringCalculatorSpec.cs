@@ -15,5 +15,14 @@ namespace StringCalculatorKata
 
             Assert.Equal(expectedValue, result);
         }
+
+        [Fact]
+        public void Return3WhenStringIs1Comma2()
+        {
+            int expectedValue = 3;
+            int result = StringCalculator.Add("1,2");
+
+            Assert.Equal(expectedValue, result);
+        }
     }
 }
