@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 
 namespace StringCalculatorKata
 {
@@ -6,9 +7,18 @@ namespace StringCalculatorKata
     {
         public static int Add(string numbers)
         {
-            if (numbers.Equals("2,3")) return 5;
-            if (numbers.Equals("2,1")) return 3;
-            if (numbers.Equals("1,2")) return 3;
+            if (numbers.Contains(","))
+            {
+                return numbers
+                    .Split(",")
+                    .Select((number) =>
+                        {
+                            if (number.Equals("")) return 0;
+                            return Int32.Parse(number);
+                        })
+                    .Aggregate((summatory, value) => summatory + value);
+            }
+
             if (numbers.Equals("")) return 0;
             return Int32.Parse(numbers);
         }
