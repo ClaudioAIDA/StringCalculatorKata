@@ -38,5 +38,13 @@ namespace StringCalculatorKata
             Assert.Equal(expectedValue, result);
         }
 
+        [Fact]
+        public void Return6WhenStringIs1CLRF2Comma3()
+        {
+            int expectedValue = 6;
+            int result = StringCalculator.Add("1\n2,3");
+
+            Assert.Equal(expectedValue, result);
+        }
     }
 }
