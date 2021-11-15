@@ -56,6 +56,15 @@ namespace StringCalculatorKata
             Assert.Equal(expectedValue, result);
         }
 
+        [Fact]
+        public void Return3WhenStringContainsSemicolorDelimiterAnd2Semicolor1()
+        {
+            int expectedValue = 3;
+            int result = StringCalculator.Add("//;\n2;1");
+
+            Assert.Equal(expectedValue, result);
+        }
+
 
     }
 }
