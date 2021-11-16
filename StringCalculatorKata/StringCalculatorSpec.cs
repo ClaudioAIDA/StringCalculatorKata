@@ -60,6 +60,7 @@ namespace StringCalculatorKata
         [InlineData(6, "//[%X*]\n1%X*2%X*3")]
         [InlineData(6, "//[*][%]\n1*2%3")]
         [InlineData(6, "//[*][&]\n1*2&3")]
+        [InlineData(6, "//[*][&&&]\n1*2&&&3")]
         public void ReturnValueWhenStringContainsADelimiter(int expectedValue, string numbers)
         {
             int result = StringCalculator.Add(numbers);
