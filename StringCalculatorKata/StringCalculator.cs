@@ -8,14 +8,22 @@ namespace StringCalculatorKata
     {
         public static int Add(string numbers)
         {
-            if (numbers.Equals("//[***]\n1***2***3")) return 6;
-            if (numbers.Equals("//[%%]\n1%%2%%3")) return 6;
-            if (numbers.Equals("//[%X*]\n1%X*2%X*3")) return 6;
             string delimiter = "\n";
             if (numbers.StartsWith("//"))
             {
-                delimiter = numbers[2].ToString();
-                numbers = numbers.Substring(4);
+                if (numbers.Contains("["))
+                {
+                    int delimiterStart = numbers.IndexOf("[") + 1;
+                    int delimiterEnd = numbers.IndexOf("]");
+                    int delimiterLength = delimiterEnd - delimiterStart;
+                    delimiter = numbers.Substring(delimiterStart, delimiterLength);
+                    numbers = numbers.Substring(delimiterEnd + 2);
+                }
+                else
+                {
+                    delimiter = numbers[2].ToString();
+                    numbers = numbers.Substring(4);
+                }
             }
 
             if (numbers.Contains(",") || numbers.Contains("\n") || numbers.Contains(delimiter))
