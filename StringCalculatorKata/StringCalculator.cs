@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace StringCalculatorKata
@@ -7,18 +8,6 @@ namespace StringCalculatorKata
     {
         public static int Add(string numbers)
         {
-            if (numbers.Equals("-2"))
-            {
-                throw new ArgumentException("Negatives not allowed", "-2");
-            }
-            if (numbers.Equals("2,-2"))
-            {
-                throw new ArgumentException("Negatives not allowed", "-2");
-            }
-            if (numbers.Equals("2,-2,-3"))
-            {
-                throw new ArgumentException("Negatives not allowed", "-2 -3");
-            }
             string delimiter = "\n";
             if (numbers.StartsWith("//"))
             {
@@ -28,6 +17,19 @@ namespace StringCalculatorKata
 
             if (numbers.Contains(",") || numbers.Contains("\n") || numbers.Contains(delimiter))
             {
+                IEnumerable<int> parsedNumbers = numbers
+                    .Split(new string[] {",", "\n", delimiter}, StringSplitOptions.None)
+                    .Select((number) =>
+                    {
+                        if (number.Equals("")) return 0;
+                        return Int32.Parse(number);
+                    });
+                if (parsedNumbers.Any((number) => number < 0))
+                {
+                    string negatives = String.Join(" ", parsedNumbers.Where((number) => number < 0));
+                    throw new ArgumentException("Negatives not allowed", negatives);
+                }
+
                 return numbers
                     .Split(new string[]{",","\n",delimiter}, StringSplitOptions.None)
                     .Select((number) =>
@@ -39,6 +41,7 @@ namespace StringCalculatorKata
             }
 
             if (numbers.Equals("")) return 0;
+            if (numbers.Contains("-")) throw new ArgumentException("Negatives not allowed", numbers);
             return Int32.Parse(numbers);
         }
     }
