@@ -8,19 +8,21 @@ namespace StringCalculatorKata
     {
         public static int Add(string numbers)
         {
-            if (numbers.Equals("//[*][%]\n1*2%3")) return 6;
-            if (numbers.Equals("//[*][&]\n1*2&3")) return 6;
-            if (numbers.Equals("//[*][&&&]\n1*2&&&3")) return 6;
             string delimiter = "\n";
             if (numbers.StartsWith("//"))
             {
                 if (numbers.Contains("["))
                 {
-                    int delimiterStart = numbers.IndexOf("[") + 1;
-                    int delimiterEnd = numbers.IndexOf("]");
-                    int delimiterLength = delimiterEnd - delimiterStart;
-                    delimiter = numbers.Substring(delimiterStart, delimiterLength);
-                    numbers = numbers.Substring(delimiterEnd + 2);
+                    do
+                    {
+                        int delimiterStart = numbers.IndexOf("[") + 1;
+                        int delimiterEnd = numbers.IndexOf("]");
+                        int delimiterLength = delimiterEnd - delimiterStart;
+                        string definedDelimiter = numbers.Substring(delimiterStart, delimiterLength);
+                        numbers = numbers.Substring(delimiterEnd + 1).Replace(definedDelimiter, ",");
+                    } while (numbers.Contains("["));
+
+                    numbers = numbers.Substring(1);
                 }
                 else
                 {
