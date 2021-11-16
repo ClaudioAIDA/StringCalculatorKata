@@ -8,9 +8,6 @@ namespace StringCalculatorKata
     {
         public static int Add(string numbers)
         {
-            if (numbers.Equals("1001")) return 0;
-            if (numbers.Equals("1001,2,3")) return 5;
-            if (numbers.Equals("//;\n1002;2;3")) return 5;
             string delimiter = "\n";
             if (numbers.StartsWith("//"))
             {
@@ -25,7 +22,9 @@ namespace StringCalculatorKata
                     .Select((number) =>
                     {
                         if (number.Equals("")) return 0;
-                        return Int32.Parse(number);
+                        int parsedNumber = Int32.Parse(number);
+                        if (parsedNumber > 1000) parsedNumber = 0;
+                        return parsedNumber;
                     });
                 if (parsedNumbers.Any((number) => number < 0))
                 {
@@ -33,19 +32,14 @@ namespace StringCalculatorKata
                     throw new ArgumentException("Negatives not allowed", negatives);
                 }
 
-                return numbers
-                    .Split(new string[]{",","\n",delimiter}, StringSplitOptions.None)
-                    .Select((number) =>
-                        {
-                            if (number.Equals("")) return 0;
-                            return Int32.Parse(number);
-                        })
-                    .Aggregate((summatory, value) => summatory + value);
+                return parsedNumbers.Aggregate((summatory, value) => summatory + value);
             }
 
             if (numbers.Equals("")) return 0;
             if (numbers.Contains("-")) throw new ArgumentException("Negatives not allowed", numbers);
-            return Int32.Parse(numbers);
+            int parsedNumber = Int32.Parse(numbers);
+            if (parsedNumber > 1000) parsedNumber = 0;
+            return parsedNumber;
         }
     }
 }
