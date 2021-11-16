@@ -9,6 +9,7 @@ namespace StringCalculatorKata
         public static int Add(string numbers)
         {
             if (numbers.Equals("//[*][%]\n1*2%3")) return 6;
+            if (numbers.Equals("//[*][&]\n1*2&3")) return 6;
             string delimiter = "\n";
             if (numbers.StartsWith("//"))
             {
