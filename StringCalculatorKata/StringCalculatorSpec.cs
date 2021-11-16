@@ -55,6 +55,7 @@ namespace StringCalculatorKata
         [InlineData(3, "//;\n2;1")]
         [InlineData(6, "//;\n1;2;3")]
         [InlineData(5, "//;\n1002;2;3")]
+        [InlineData(6, "//[***]\n1***2***3")]
         public void ReturnValueWhenStringContainsADelimiter(int expectedValue, string numbers)
         {
             int result = StringCalculator.Add(numbers);
