@@ -10,6 +10,8 @@ namespace StringCalculatorKata
         [InlineData(1, "1")]
         [InlineData(2, "2")]
         [InlineData(3, "3")]
+        [InlineData(0, "1001")]
+        [InlineData(1000, "1000")]
         public void ReturnValueWhenTheStringIsANumber(int expectedValue, string numbers)
         {
             int result = StringCalculator.Add(numbers);
@@ -28,7 +30,6 @@ namespace StringCalculatorKata
 
             Assert.Equal(expectedValue, result);
         }
-
 
         [Fact]
         public void Return3WhenStringIs1CLRF2()
